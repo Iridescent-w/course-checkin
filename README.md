@@ -1,6 +1,6 @@
-# 课程测试站自动请求作业
+# 自动打卡程序
 
-面向教师提供的授权练习环境。程序通过 Python 标准库完成登录、HMAC-SHA256 请求签名、结果校验，并可注册 Windows 每日计划任务。默认时间为电脑本地时间 13:00；中国时区电脑即北京时间 13:00。
+程序通过 Python 标准库完成登录、HMAC-SHA256 请求签名、结果校验，并可注册 Windows 每日计划任务。默认时间为电脑本地时间 13:00；中国时区电脑即北京时间 13:00。
 
 ## 下载和运行
 
@@ -24,7 +24,7 @@
 - `course_checkin.py`：登录、签名、提交与结果校验。
 - `tests`：不联网的 mock 测试。
 
-任务名称为 `CourseCheckin-Daily`。可执行文件、服务器配置、加密凭据、日志和成功标记保存在 `%LOCALAPPDATA%\CourseCheckinDemo`，与项目下载目录分离，因此解压目录之后可以移动。账号密码由 Windows 当前用户加密保存，老师需要输入自己的课程练习账号，不能复用作者电脑上的凭据。
+任务名称为 `CourseCheckin-Daily`。可执行文件、服务器配置、加密凭据、日志和成功标记保存在 `%LOCALAPPDATA%\CourseCheckinDemo`，与项目下载目录分离，因此解压目录之后可以移动。
 
 双击 `uninstall.cmd` 只删除计划任务。本机凭据和日志保留在上述目录，便于检查；确认不再需要后，可自行删除该目录。
 
@@ -44,13 +44,4 @@
 python -m unittest discover -s tests -v
 ```
 
-测试会替换网络调用，不连接课程站，也不会创建记录。
-
-## 上传到 GitHub
-
-1. 登录 GitHub，点右上角 `+`，选择 `New repository`。
-2. 名称可填 `course-checkin-demo`，可见性按课程要求选择；创建时不要自动生成 README。
-3. 创建后点 `uploading an existing file`，把本目录中的文件和 `tests` 文件夹拖入，然后点 `Commit changes`。
-4. 将仓库页面链接交给老师。私有仓库要邀请老师的 GitHub 账号。
-
-`.gitignore` 排除了本机凭据、配置、日志和成功标记。网页上传前仍需检查文件清单，不要上传账号、密码或运行数据。
+测试会替换网络调用，不连接网站，也不会创建记录。
